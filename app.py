@@ -30,13 +30,19 @@ def upload():
         filename = os.path.join('static', file.filename)
         file.save(filename)
 
-        cursor = db.cursor()
-        insert_query = "INSERT INTO ads (image_url, upload_time) VALUES (%s, %s)"
-        current_time = datetime.now()
-        cursor.execute(insert_query, (filename, current_time))
-        db.commit()
-        
-        return 'File uploaded successfully'
+        try:
+            cursor = db.cursor()
+            insert_query = "INSERT INTO ads (image_url, upload_time) VALUES (%s, %s)"
+            current_time = datetime.now()
+            cursor.execute(insert_query, (filename, current_time))
+            db.commit()
+
+            return 'File uploaded successfully'
+            
+        except Exception as e:
+            db.rollback()
+            print("Error uploading file:", e)
+            return 'Error uploading file'
 
 @app.route('/get_ads', methods=['GET'])
 def get_ads():
