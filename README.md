@@ -4,7 +4,7 @@ This is a portfolio project as part of my Alx Software Engineering course, its a
 
 # Introduction
 ---
-FindIt is a web app idea for sharing ads exclusively, just a platform for sharing ads
+FindIt is a web app idea for sharing ads exclusively, just a platform for posting ads
 
 # Use
 ---
@@ -16,4 +16,4 @@ By using the web app, you agree to respect this intellectual property and not sh
 You can reach me if you wish to duplicate or copy.
 
 # Author
-Joy Kuapa [residualcode6@gmail.com]
+Joy Kuapa [residualcode6@gmail.com] and ChatGPT
