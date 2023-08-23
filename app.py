@@ -12,6 +12,10 @@ db = mysql.connector.connect(
     database="adboard"
 )
 
+@app.route('/')
+def index():
+    return render_template('templates/index.html')
+
 @app.route('/upload', methods=['POST'])
 def upload():
     if 'file' not in request.files:
