@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		try {
 			const response = await fetch('/upload', {
 				method: 'POST',
-				body: formData,
+				body: formData
 			});
 			
 			// Check the status of the response
