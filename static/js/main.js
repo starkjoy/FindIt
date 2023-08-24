@@ -43,9 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			// Check the status of the response
 			if (response.ok) {
 				// Parse the response as JSON
-				const responseData = await response.text();
-				if (responseData.includes('successfully')) {
-					console.log('File uploaded successfully');
+				const relativeImagePath = await response.text();
+                const imageURL = `static/${relativeImagePath}`;
+                createImageContainer(imageURL);
+				console.log('File uploaded successfully');
 				
 				// Handle response (show success message, update UI, etc.)
 			} else {
@@ -53,11 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
 				throw new Error(response.statusText);
 			}
         }	
-		} catch (error) {
+		catch (error) {
 			// Show error mesage to the user
 			console.error('Error uploading file:', error);
-		}
-	}
+	    }
+    }
 	
 	// Function to create an image container
     function createImageContainer(imageFile) {
