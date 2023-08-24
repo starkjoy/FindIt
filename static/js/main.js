@@ -43,10 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			// Check the status of the response
 			if (response.ok) {
 				// Parse the response as text (the relative path)
-				const relativeImagePath = await response.text();
-                const imageURL = `static/${relativeImagePath}`;
-                createImageContainer(imageURL);
-				console.log('File uploaded successfully');
+				const data = await response.json();
 				
 				// Handle response (show success message, update UI, etc.)
 			} else {
@@ -61,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 	
 	// Function to create an image container
-    function createImageContainer(imageURL) {
+    function createImageContainer(imageFile) {
 		// Create a new <div> element for the image container
         const container = document.createElement('div');
         container.classList.add('image-container');
@@ -73,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Create a new <img> element for the image
         const image = document.createElement('img');
         image.classList.add('container-image');
-        image.src = imageURL;
+        image.src = URL.createObjectURL(imageFile);
 
 		// Append image to content div
         contentDiv.appendChild(image);
