@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 	
 	// Function to create an image container
-    function createImageContainer(imageFile) {
+    function createImageContainer(imageURL) {
 		// Create a new <div> element for the image container
         const container = document.createElement('div');
         container.classList.add('image-container');
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Create a new <img> element for the image
         const image = document.createElement('img');
         image.classList.add('container-image');
-        image.src = imageFile;
+        image.src = imageURL;
 
 		// Append image to content div
         contentDiv.appendChild(image);
