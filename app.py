@@ -58,5 +58,18 @@ def get_ads():
         ad['image_url'] = os.path.join('uploads', os.path.basename(ad['image_url']))
     return jsonify(ads)
 
+@app.route('/get_uploaded_images', methods=['GET'])
+def get_uploaded_images():
+    uploaded_images = []
+
+    # Get a list of files in the "static" folder
+    static_path = os.path.join(app.root_path, 'static')
+    for filename in os.listdir(static_path):
+        if filename.lower().endswith(('.jpg', '.jpeg', '.png', '.gif')):
+            uploaded_images.append(filename)
+
+    return jsonify(uploaded_images)
+
+
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
