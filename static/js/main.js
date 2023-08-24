@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// Create a new <img> element for the image
         const image = document.createElement('img');
         image.classList.add('container-image');
-        image.src = imageURL;
+        image.src = imageFile;
 
 		// Append image to content div
         contentDiv.appendChild(image);
