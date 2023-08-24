@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
 				// throw an error with the status text
 				throw new Error(response.statusText);
 			}
-			
+        }	
 		} catch (error) {
 			// Show error mesage to the user
 			console.error('Error uploading file:', error);
