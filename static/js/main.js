@@ -28,6 +28,34 @@ document.addEventListener('DOMContentLoaded', function()  {
 		// Trigger the click event of the hidden file input element
         fileInput.click();
     });
+    
+	// Function to upload image to the server
+	async function uploadImage(imageFile) {
+		const formData = new FormData();
+		formData.append('file', imageFile);
+		
+		try {
+			const response = await fetch('/upload', {
+				method: 'POST',
+				body: formData
+			});
+			
+			// Check the status of the response
+			if (response.ok) {
+				// Parse the response as text (the relative path)
+				const data = await response.json();
+				
+				// Handle response (show success message, update UI, etc.)
+			} else {
+				// throw an error with the status text
+				throw new Error(response.statusText);
+			}
+        }	
+		catch (error) {
+			// Show error mesage to the user
+			console.error('Error uploading file:', error);
+	    }
+    }
 	
 	// Function to create an image container
     function createImageContainer(imageFile) {
@@ -61,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function()  {
         const imageContainers = document.querySelector('.image-containers');
 		// Append container to image containers
         imageContainers.appendChild(container);
-    }
+    } 
     
 	// Function to get formatted time
     function getFormattedTime() {
