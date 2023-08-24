@@ -38,8 +38,9 @@ def upload():
             current_time = datetime.now()
             cursor.execute(insert_query, (filename, current_time))
             db.commit()
-
-            return 'File uploaded successfully'
+            
+            relative_path = os.path.join('uploads', file.filename)
+            return relative_path
             
         except Exception as e:
             db.rollback()
@@ -52,6 +53,9 @@ def get_ads():
     select_query = "SELECT * FROM ads ORDER BY upload_time DESC"
     cursor.execute(select_query)
     ads = cursor.fetchall()
+
+    for ad in ads:
+        ad['image_url'] = os.path.join('uploads', os.path.basename(ad['image_url']))
     return jsonify(ads)
 
 if __name__ == '__main__':
