@@ -37,13 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
 		try {
 			const response = await fetch('/upload', {
 				method: 'POST',
-				body: formData
+				body: formData,
 			});
 			
 			// Check the status of the response
 			if (response.ok) {
 				// Parse the response as JSON
-				const data = await response.json();
+				const responseData = await response.text();
+				if (responseData.includes('successfully')) {
+					console.log('File uploaded successfully');
 				
 				// Handle response (show success message, update UI, etc.)
 			} else {
