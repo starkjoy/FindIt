@@ -1,5 +1,5 @@
 // Wait for the DOM to be fully loaded before executing the code
-document.addEventListener('DOMContentLoaded', function()  {
+document.addEventListener('DOMContentLoaded', async function()  {
 	// Get reference to the "Add" button (plus icon)
     const addBtn = document.querySelector('.plus-icon');
 	
@@ -9,6 +9,28 @@ document.addEventListener('DOMContentLoaded', function()  {
     fileInput.accept = 'image/*';
     fileInput.style.display = 'none';
     
+    // Get reference to the image containers container
+    const imageContainersParent = document.querySelector('.image-containers');
+
+    // Fetch image URLs from the backend
+    try {
+        const response = await fetch('/get_image_urls');
+        
+        if (response.ok) {
+            const data = await response.json();
+            const imageUrls = data.image_urls;
+            
+            // Display images by creating image containers
+            imageUrls.forEach(imageUrl => {
+                createImageContainer(imageUrl);
+            });
+        } else {
+            console.error('Failed to fetch image URLs.');
+        }
+    } catch (error) {
+        console.error('Error fetching image URLs:', error);
+    }
+
 	// Listen for file selection
     fileInput.addEventListener('change', async (event) => {
         const selectedFile = event.target.files[0];
@@ -29,68 +51,53 @@ document.addEventListener('DOMContentLoaded', function()  {
         fileInput.click();
     });
     
-	// Function to upload image to the server
-	async function uploadImage(imageFile) {
-		const formData = new FormData();
-		formData.append('file', imageFile);
-		
-		try {
-			const response = await fetch('/upload', {
-				method: 'POST',
-				body: formData
-			});
-			
-			// Check the status of the response
-			if (response.ok) {
-				// Parse the response as text (the relative path)
-				const data = await response.json();
-				
-				// Handle response (show success message, update UI, etc.)
-			} else {
-				// throw an error with the status text
-				throw new Error(response.statusText);
-			}
-        }	
-		catch (error) {
-			// Show error mesage to the user
-			console.error('Error uploading file:', error);
-	    }
+    // Function to upload image to the server
+    async function uploadImage(imageFile) {
+        const formData = new FormData();
+        formData.append('file', imageFile);
+        
+        try {
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+            
+            // Check the status of the response
+            if (response.ok) {
+                // Parse the response as text (the relative path)
+                const data = await response.json();
+                
+                // Handle response (show success message, update UI, etc.)
+            } else {
+                // throw an error with the status text
+                throw new Error(response.statusText);
+            }
+        } catch (error) {
+            // Show error message to the user
+            console.error('Error uploading file:', error);
+        }
     }
 	
-	// Function to create an image container
-    function createImageContainer(imageFile) {
-		// Create a new <div> element for the image container
+    // Function to create an image container
+    function createImageContainer(imageUrl) {
         const container = document.createElement('div');
         container.classList.add('image-container');
         
-		// Create a new <div> element to hold image and content
         const contentDiv = document.createElement('div');
         contentDiv.classList.add('container-content');
-		
-		// Create a new <img> element for the image
+        
         const image = document.createElement('img');
         image.classList.add('container-image');
-        image.src = URL.createObjectURL(imageFile);
-
-		// Append image to content div
+        image.src = imageUrl;
+        
         contentDiv.appendChild(image);
         
-		// Create a new <time> element for the time tag
-        const timeTag = document.createElement('time');
-        timeTag.textContent = getFormattedTime();
-        timeTag.classList.add('changeFontClass');
-        
-		// Append time tag to content div
-        contentDiv.appendChild(timeTag);
-        
-		// Append content div to main container
         container.appendChild(contentDiv);
+        
+        imageContainersParent.appendChild(container);
+    }
     
-        const imageContainers = document.querySelector('.image-containers');
-		// Append container to image containers
-        imageContainers.appendChild(container);
-    } 
-    
+   
 	// Function to get formatted time
     function getFormattedTime() {
         const currentTime = new Date();
@@ -101,9 +108,6 @@ document.addEventListener('DOMContentLoaded', function()  {
 	// Get references to elements
     const popup = document.getElementById('popup');
     const popupImage = document.getElementById('popup-image');
-    
-	// Add click event listener to individual Image Containers' parent
-    const imageContainersParent = document.querySelector('.image-containers');
     
     imageContainersParent.addEventListener('click', (event) => {
 		// Find the closest parent with class '.image-container'
