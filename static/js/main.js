@@ -19,11 +19,16 @@ document.addEventListener('DOMContentLoaded', async function()  {
         if (response.ok) {
             const data = await response.json();
             const imageUrls = data.image_urls;
-            
-            // Display images by creating image containers
-            imageUrls.forEach(imageUrl => {
-                createImageContainer(imageUrl);
-            });
+    
+            // Check if imageUrls is defined and not empty
+            if (imageUrls && imageUrls.length > 0) {
+                // Display images by creating image containers
+                imageUrls.forEach(imageUrl => {
+                    createImageContainer(imageUrl);
+                });
+            } else {
+                console.error('No image URLs found.');
+            }
         } else {
             console.error('Failed to fetch image URLs.');
         }
