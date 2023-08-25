@@ -24,7 +24,7 @@ def create_table():
         id INT AUTO_INCREMENT PRIMARY KEY,
         image_url VARCHAR(255) NOT NULL,
         upload_time DATETIME NOT NULL
-    );
+    )
     """)
     db.commit()
 
