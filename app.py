@@ -3,6 +3,7 @@ from flask_cors import CORS
 import os
 import mysql.connector
 from datetime import datetime
+from mysql.connector import Error
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -12,7 +13,7 @@ db = mysql.connector.connect(
     host="localhost",
     user="FindIt",
     password="Pa$$w0rd!2023",
-    database="ads"
+    database="adboard"
 )
 
 # Check if 'ads' table exists, if not create it
