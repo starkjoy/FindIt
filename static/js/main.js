@@ -119,7 +119,8 @@ document.addEventListener('DOMContentLoaded', async function()  {
         const clickedContainer = event.target.closest('.image-container');
         if (clickedContainer) {
             const clickedImage = clickedContainer.querySelector('img');
-            openPopup(clickedImage.src);
+            const imageUrl = clickedImage.src;
+            openPopup(imageUrl);
         }
     });
     
