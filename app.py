@@ -61,6 +61,7 @@ def upload():
             print("Error uploading file:", e)
             return 'Error uploading file'
 
+@app.route('/get_image_urls', methods=['GET'])
 def get_image_url():
     try:
         cursor = db.cursor()
