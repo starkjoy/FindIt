@@ -43,8 +43,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
 		// Check if a file was selected
         if (selectedFile) {
 			// Call function to create image container
-            const imageUrl = URL.createObjectURL(selectedFile);
-            createImageContainer(selectedFile);
+            createImageContainer(URL.createObjectURL(selectedFile));
 
             // Call function to upload image to the server
 			await uploadImage(selectedFile);
@@ -72,7 +71,6 @@ document.addEventListener('DOMContentLoaded', async function()  {
             if (response.ok) {
                 // Parse the response as text (the relative path)
                 const data = await response.json();
-                createImageContainer(data.imageUrl + '?' + Date.now());
                 
                 // Handle response (show success message, update UI, etc.)
             } else {
