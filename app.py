@@ -61,18 +61,20 @@ def upload():
             print("Error uploading file:", e)
             return 'Error uploading file'
 
-@app.route('/get_image_urls', methods=['GET'])
-def get_image_url():
+@app.route('/get_image_data', methods=['GET'])  # Updated route name
+def get_image_data():  # Updated function name
     try:
         cursor = db.cursor()
-        select_query = "SELECT image_url FROM ads"
+        select_query = "SELECT image_url, upload_time FROM ads"  # Fetch both columns
         cursor.execute(select_query)
-        image_urls = [row[0] for row in cursor.fetchall()]
-        return jsonify({'image_urls': image_urls})
-    
+        
+        image_data = [{'image_url': row[0], 'upload_time': row[1]} for row in cursor.fetchall()]
+        
+        return jsonify({'image_data': image_data})  # Return list of dictionaries
+        
     except Exception as e:
-        print("Error fetching image URLs:", e)
-        return jsonify({'error': 'Failed to fetch image URLs'})
+        print("Error fetching image data:", e)
+        return jsonify({'error': 'Failed to fetch image data'})
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

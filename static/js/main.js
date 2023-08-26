@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
 
     // Fetch image URLs from the backend
     try {
-        const response = await fetch('/get_image_urls');
+        const response = await fetch('/get_image_data');
         
         if (response.ok) {
             const data = await response.json();
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
             if (imageUrls && imageUrls.length > 0) {
                 // Display images by creating image containers
                 imageUrls.forEach(imageUrl => {
-                    createImageContainer(imageUrl);
+                    createImageContainer(imageItem.image_url, imageItem.upload_time);
                 });
             } else {
                 console.error('No image URLs found.');
@@ -105,8 +105,8 @@ document.addEventListener('DOMContentLoaded', async function()  {
         
         container.appendChild(contentDiv);
         
-            // Insert the new container at the beginning of the parent
-            imageContainersParent.insertBefore(container, imageContainersParent.firstChild);
+        // Insert the new container at the beginning of the parent
+        imageContainersParent.insertBefore(container, imageContainersParent.firstChild);
     }
     
    
