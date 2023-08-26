@@ -124,6 +124,7 @@ b {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
     z-index: 1000;
+	overflow: hidden; /* Hide any overflow */
 }
 
 /* Styles for the pop-up content */
