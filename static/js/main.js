@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
             if (response.ok) {
                 // Parse the response as text (the relative path)
                 const data = await response.json();
+                createImageContainer(data.imageUrl);
                 
                 // Handle response (show success message, update UI, etc.)
             } else {
