@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
             createImageContainer(selectedFile);
 
             // Call function to upload image to the server
-			//await uploadImage(selectedFile);
+			await uploadImage(selectedFile);
         }
     });
     
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
             if (response.ok) {
                 // Parse the response as text (the relative path)
                 const data = await response.json();
-                createImageContainer(data.imageUrl);
+                createImageContainer(data.imageUrl + '?' + Date.now());
                 
                 // Handle response (show success message, update UI, etc.)
             } else {
