@@ -173,6 +173,9 @@ document.addEventListener('DOMContentLoaded', async function()  {
 
     // Add mousedown event listener to start dragging
     popupImage.addEventListener('mousedown', (event) => {
+        // Prevent the default drag-and-drop behavior
+        event.preventDefault();
+        
         isDragging = true;
         lastX = event.clientX;
         lastY = event.clientY;
