@@ -144,4 +144,25 @@ document.addEventListener('DOMContentLoaded', async function()  {
     closePopupButton.addEventListener('click', () => {
         popup.style.display = 'none';
     });
+
+    // Set the initial scale
+    let scale = 1;
+
+    // Add a scroll event listener to the popup image
+    popupImage.addEventListener('wheel', (event) => {
+        // Calculate the new scale based on the scroll direction
+        if (event.deltaY > 0) {
+            scale -= 0.1;
+        } else {
+            scale += 0.1;
+        }
+        // Limit the scale within a certain range
+        scale = Math.max(0.5, Math.min(2, scale));
+        
+        // Apply the scale to the image
+        popupImage.style.transform = `scale(${scale})`;
+        
+        // Prevent the default scrolling behavior
+        event.preventDefault();
+    });
 });
