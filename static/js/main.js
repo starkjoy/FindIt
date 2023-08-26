@@ -105,7 +105,8 @@ document.addEventListener('DOMContentLoaded', async function()  {
         
         container.appendChild(contentDiv);
         
-        imageContainersParent.appendChild(container);
+            // Insert the new container at the beginning of the parent
+            imageContainersParent.insertBefore(container, imageContainersParent.firstChild);
     }
     
    
