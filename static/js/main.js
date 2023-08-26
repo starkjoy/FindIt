@@ -71,6 +71,8 @@ document.addEventListener('DOMContentLoaded', async function()  {
             if (response.ok) {
                 // Parse the response as text (the relative path)
                 const data = await response.json();
+                const newImageUrl = data.path; // Get the newly uploaded image URL
+                createImageContainer(newImageUrl); // Add the new image container
                 
                 // Handle response (show success message, update UI, etc.)
             } else {
