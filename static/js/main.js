@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
     }
 	
     // Function to create an image container
-    function createImageContainer(imageUrl) {
+    function createImageContainer(imageUrl, timestamp) {
         const container = document.createElement('div');
         container.classList.add('image-container');
         
