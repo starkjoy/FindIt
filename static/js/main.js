@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', async function()  {
         
         if (response.ok) {
             const data = await response.json();
-            const imageUrls = data.image_urls;
+            const imageData = data.image_data;
     
             // Check if imageUrls is defined and not empty
-            if (imageUrls && imageUrls.length > 0) {
+            if (imageData && imageData.length > 0) {
                 // Display images by creating image containers
-                imageUrls.forEach(imageUrl => {
+                imageData.forEach(imageItem => {
                     createImageContainer(imageItem.image_url, imageItem.upload_time);
                 });
             } else {
