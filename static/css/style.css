@@ -163,3 +163,13 @@ b {
     transition: transform 0.2s ease; /* Optional: Add a smooth transition */
     transform-origin: center center;
 }
+
+/* Style for the image wrapper inside the popup */
+#image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Clip any overflow */
+}

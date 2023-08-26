@@ -147,8 +147,6 @@ document.addEventListener('DOMContentLoaded', async function()  {
 
     // Set the initial scale
     let scale = 1;
-    let positionX = 0;
-    let positionY = 0;
 
     // Add a scroll event listener to the popup image
     popupImage.addEventListener('wheel', (event) => {
@@ -161,14 +159,6 @@ document.addEventListener('DOMContentLoaded', async function()  {
         // Limit the scale within a certain range
         scale = Math.max(0.5, Math.min(2, scale));
 
-        // Calculate the new position based on the scale and scroll position
-        positionX -= event.deltaX * 0.1;
-        positionY -= event.deltaY * 0.1;
-        
-        // Apply the scale and position to the image
-        popupImage.style.transform = `scale(${scale}) translate(${positionX}px, ${positionY}px)`;
-
-        
         // Apply the scale to the image
         popupImage.style.transform = `scale(${scale})`;
 
