@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
 		// Check if a file was selected
         if (selectedFile) {
 			// Call function to create image container
+            const imageUrl = URL.createObjectURL(selectedFile);
             createImageContainer(selectedFile);
 
             // Call function to upload image to the server
