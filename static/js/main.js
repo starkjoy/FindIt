@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async function()  {
 		// Check if a file was selected
         if (selectedFile) {
 			// Call function to create image container
-            createImageContainer(URL.createObjectURL(selectedFile));
+            createImageContainer(URL.createObjectURL(selectedFile), getFormattedTime());
 
             // Call function to upload image to the server
 			await uploadImage(selectedFile);
@@ -96,6 +96,12 @@ document.addEventListener('DOMContentLoaded', async function()  {
         image.src = imageUrl;
         
         contentDiv.appendChild(image);
+
+        // Create a new <time> element for the timestamp
+        const timeTag = document.createElement('time');
+        timeTag.textContent = timestamp;
+        timeTag.classList.add('changeFontClass');
+        contentDiv.appendChild(timeTag);
         
         container.appendChild(contentDiv);
         
