@@ -141,13 +141,16 @@ b {
 
 /* Style for the close button */
 #close-popup {
-    background-color:dodgerblue;
+    background-color: dodgerblue;
     color: white;
     border: none;
     padding: 8px 16px;
     border-radius: 5px;
     cursor: pointer;
-	margin-top: 10px;
+    position: absolute;
+    bottom: 10px; /* Adjust the desired distance from the bottom */
+    left: 50%; /* Position horizontally at 50% */
+    transform: translateX(-50%); /* Center horizontally */
 }
 
 /* Additional styles for the pop-up image content */
