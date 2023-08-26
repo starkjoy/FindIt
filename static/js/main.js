@@ -145,10 +145,15 @@ document.addEventListener('DOMContentLoaded', async function()  {
         popup.style.display = 'none';
     });
 
-    // Set the initial scale
+    // Set the initial scale, position, and drag state
     let scale = 1;
+    let positionX = 0;
+    let positionY = 0;
+    let isDragging = false;
+    let lastX = 0;
+    let lastY = 0;
 
-    // Add a scroll event listener to the popup image
+    // Add a scroll event listener to the popup image for zooming
     popupImage.addEventListener('wheel', (event) => {
         // Calculate the new scale based on the scroll direction
         if (event.deltaY > 0) {
@@ -165,4 +170,33 @@ document.addEventListener('DOMContentLoaded', async function()  {
         // Prevent the default scrolling behavior
         event.preventDefault();
     });
+
+    // Add mousedown event listener to start dragging
+    popupImage.addEventListener('mousedown', (event) => {
+        isDragging = true;
+        lastX = event.clientX;
+        lastY = event.clientY;
+        popupImage.style.cursor = 'grabbing';
+    });
+    
+    // Add mouseup event listener to stop dragging
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+        popupImage.style.cursor = 'grab';
+    });
+    
+    // Add mousemove event listener for panning
+    window.addEventListener('mousemove', (event) => {
+        if (!isDragging) return;
+        const deltaX = event.clientX - lastX;
+        const deltaY = event.clientY - lastY;
+        
+        positionX += deltaX;
+        positionY += deltaY;
+        popupImage.style.transform = `scale(${scale}) translate(${positionX}px, ${positionY}px)`;
+        
+        lastX = event.clientX;
+        lastY = event.clientY;
+    });
+
 });

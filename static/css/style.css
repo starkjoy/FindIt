@@ -163,4 +163,9 @@ b {
     margin: auto;
     transition: transform 0.2s ease; /* Optional: Add a smooth transition */
     transform-origin: center center;
+	cursor: grab;
+}
+
+#popup-image:active {
+    cursor: grabbing;
 }
