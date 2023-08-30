@@ -69,8 +69,6 @@ body, html {
 	max-height: 100%;
 	margin-top: 150px;
 	overflow-x: hidden;
-	border-right: 1px solid #ccc;
-	border-left: 1px solid #ccc;
 }
 
 /* Style each image container */
