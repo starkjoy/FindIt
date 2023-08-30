@@ -206,12 +206,12 @@ document.addEventListener('DOMContentLoaded', async function()  {
         {
             number: { value: 50 }, 
             size: { value: 3 }, 
-            color: { value: "#000000" },
+            color: { value: "#1E90FF" },
             shape: { type: "circle" },
-            line_linked: { enable: true, distance: 150, color: "#000000" },
+            line_linked: { enable: true, distance: 150, color: "#9c9c9b" },
         },interactivity: 
         {
-            events: {onhover: {enable: true, mode: "repulse",},},
+            events: {onhover: {enable: true, mode: "connect",},},
         },
         });
       
