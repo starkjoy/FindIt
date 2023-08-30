@@ -202,4 +202,23 @@ document.addEventListener('DOMContentLoaded', async function()  {
         lastY = event.clientY;
     });
 
+    particlesJS("particles-js", {
+        particles: {
+          number: { value: 50 },
+          size: { value: 3 },
+          color: { value: "#000000" },
+          shape: { type: "circle" },
+          line_linked: { enable: true, distance: 150, color: "#000000" },
+        },
+        interactivity: {
+            events: {
+              onhover: {
+                enable: true,
+                mode: "repulse",
+              },
+            },
+          },
+      });
+      
+
 });

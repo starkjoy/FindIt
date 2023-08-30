@@ -167,3 +167,12 @@ b {
 #popup-image:active {
     cursor: grabbing;
 }
+
+#particles-js {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: #f0f0f0;
+	z-index: -1; /* Make sure particles are behind other content */
+  }
+  
